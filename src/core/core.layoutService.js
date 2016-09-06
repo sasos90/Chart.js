@@ -32,7 +32,7 @@ module.exports = function(Chart) {
 				return;
 			}
 
-			var xPadding = 0;
+			var xPadding = 20;
 			var yPadding = 0;
 
 			var leftBoxes = helpers.where(chartInstance.boxes, function(box) {
