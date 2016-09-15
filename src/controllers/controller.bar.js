@@ -89,6 +89,7 @@ module.exports = function(Chart) {
 					base: reset ? scaleBase : me.calculateBarBase(me.index, index),
 					width: me.calculateBarWidth(index),
 					backgroundColor: custom.backgroundColor ? custom.backgroundColor : helpers.getValueAtIndexOrDefault(dataset.backgroundColor, index, rectangleElementOptions.backgroundColor),
+					backgroundColor2: custom.backgroundColor2 ? custom.backgroundColor2 : helpers.getValueAtIndexOrDefault(dataset.backgroundColor2, index, rectangleElementOptions.backgroundColor2),
 					borderSkipped: custom.borderSkipped ? custom.borderSkipped : rectangleElementOptions.borderSkipped,
 					borderColor: custom.borderColor ? custom.borderColor : helpers.getValueAtIndexOrDefault(dataset.borderColor, index, rectangleElementOptions.borderColor),
 					borderWidth: custom.borderWidth ? custom.borderWidth : helpers.getValueAtIndexOrDefault(dataset.borderWidth, index, rectangleElementOptions.borderWidth)
@@ -363,6 +364,7 @@ module.exports = function(Chart) {
 					base: reset ? scaleBase : me.calculateBarBase(me.index, index),
 					height: me.calculateBarHeight(index),
 					backgroundColor: custom.backgroundColor ? custom.backgroundColor : helpers.getValueAtIndexOrDefault(dataset.backgroundColor, index, rectangleElementOptions.backgroundColor),
+					backgroundColor2: custom.backgroundColor2 ? custom.backgroundColor2 : helpers.getValueAtIndexOrDefault(dataset.backgroundColor2, index, rectangleElementOptions.backgroundColor2),
 					borderSkipped: custom.borderSkipped ? custom.borderSkipped : rectangleElementOptions.borderSkipped,
 					borderColor: custom.borderColor ? custom.borderColor : helpers.getValueAtIndexOrDefault(dataset.borderColor, index, rectangleElementOptions.borderColor),
 					borderWidth: custom.borderWidth ? custom.borderWidth : helpers.getValueAtIndexOrDefault(dataset.borderWidth, index, rectangleElementOptions.borderWidth)
@@ -411,6 +413,12 @@ module.exports = function(Chart) {
 					function cornerAt(index) {
 						return corners[(startCorner + index) % 4];
 					}
+
+					// add gradient
+					var grd = ctx.createLinearGradient(vm.base, topY, vm.base, bottomY);
+					grd.addColorStop(0.5, vm.backgroundColor);
+					grd.addColorStop(0.5, vm.backgroundColor2);
+					ctx.fillStyle = grd;
 
 					// Draw rectangle from 'startCorner'
 					ctx.moveTo.apply(ctx, cornerAt(0));

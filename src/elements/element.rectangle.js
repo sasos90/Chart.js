@@ -55,6 +55,11 @@ module.exports = function(Chart) {
 				return corners[(startCorner + index) % 4];
 			}
 
+			// create gradient
+			var grd = ctx.createLinearGradient(leftX, top, rightX, top);
+			grd.addColorStop(0.5, vm.backgroundColor);
+			grd.addColorStop(0.5, vm.backgroundColor2);
+			ctx.fillStyle = grd;
 			// Draw rectangle from 'startCorner'
 			ctx.moveTo.apply(ctx, cornerAt(0));
 			for (var i = 1; i < 4; i++)
